@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- Заголовок страницы в браузере -->
+  <title>Ингредиенты</title>
+  <!--- SWIPER --->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css?_v=20230922183920"
+  />
+  <!-- TAILWINDCSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css?_v=20231022062914"
+    rel="stylesheet"
+  />
+  <!-- BOOTSTRAP -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css?_v=20230922183920" rel="stylesheet" -->
+  <!-- integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
+  <!-- Подключаем CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/simplebar@latest/dist/simplebar.css?_v=20230922183920"
+  />
+
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.min.css' %}" />
+  <!-- Кодировка страницы -->
+  <!-- С появлением HTML5 можно использовать  -->
+  <meta charset="UTF-8" />
+  <!-- Настройки адаптивности страницы  -->
+  <!-- Адаптивность  -->
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=0"
+  />
+  <!---maximum-scale=1.0, user-scalable=0--->
+  <!-- Отключает формирование ссылки у номера телефона на iOS -->
+  <!---<meta name="format-detection" content="telephone=no">--->
+  <link rel="shortcut icon" href="" />
+  <!-- Краткое описание страницы  -->
+  <meta name="description" content="" />
+  <!-- Ключевые слова страницы  -->
+  <meta name="keywords" content="" />
+
+  <!-- Управление доступом поисковых роботов к странице -->
+  <!-- Запрет индексации страницы полностью -->
+  <!---<meta name="robots" content="none">--->
+
+  <!-- Автор страницы -->
+  <meta name="Author" content="" />
+  <!-- Авторские права -->
+  <meta name="Copyright" content="2023" />
+  <!-- Адрес автора -->
+  <meta name="Address" content="" />
+
+  <!-- локализация сайта, для русскоязычного сайта ru_RU -->
+  <meta property="og:locale" content="ru_RU" />
+  <!-- тип контента, по умолчанию используется article -->
+  <meta property="og:type" content="article" />
+  <!-- заголовок страницы, который будет выводится в записи социальной сети -->
+  <meta property="og:title" content="" />
+  <!-- описание страницы -->
+  <meta property="og:description" content="" />
+  <!-- ссылка на изображение, которое будет публиковаться в записи -->
+  <meta property="og:image" content="" />
+  <!-- ссылка на текущую страницу -->
+  <meta property="og:url" content="" />
+  <!-- название сайта -->
+  <meta property="og:site_name" content="" />
+
+  <!-- Тип карты, по умолчанию используется summary -->
+  <meta name="twitter:card" content="summary" />
+  <!-- Имя/логин автора -->
+  <meta name="twitter:site" content="" />
+  <!-- Название страницы -->
+  <meta name="twitter:title" content="" />
+  <!-- Описание страницы -->
+  <meta name="twitter:description" content="" />
+  <!-- Cсылка на изображение -->
+  <meta name="twitter:image" content="" />
+</head>
+
+
+  <body class="overflow-auto">
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container _container">
+    <div class="header__body">
+      <a href="#" class="header__logo">dmshms</a>
+      <div class="header__content">
+        <div data-da=".aside__body,767,1" class="header__search search">
+          <form action="#" method="get" class="search__form">
+            <div class="search__body">
+              <div class="search__item _toggled-input input-underline">
+                <label class="label"> Найти рецепт.. </label
+                ><input name="search" type="text" class="search__input" />
+              </div>
+              <button
+                type="submit"
+                class="search__button _icon-search"
+              ></button>
+            </div>
+          </form>
+        </div>
+        <button class="header__burger burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+ <aside class="aside">
+  <div class="aside__body">
+    <ul class="aside__list">
+      <li class="aside__item">
+        <a href="{% url "main:favourite" %}" class="aside__link _icon-bookmark">Избранное</a>
+      </li>
+      <li class="aside__item">
+        <a  class="aside__link _icon-forkandspoon"
+          >Ингредиенты</a
+        >
+      </li>
+      <li class="aside__item">
+        <a href="{% url "main:filter" 'breakfast' %}" class="aside__link _icon-brightness"
+          >Завтраки</a
+        >
+      </li>
+      <li class="aside__item">
+        <a href="{% url "main:filter" 'lunch' %}" class="aside__link _icon-cloud1">Обеды</a>
+      </li>
+      <li class="aside__item">
+        <a href="{% url "main:filter" 'dinner' %}" class="aside__link _icon-moon">Ужины</a>
+      </li>
+    </ul>
+    <a href="{% url "logout"  %}" class="aside__button _icon-in-alt"> Выйти </a>
+    <!-- Или выйти -->
+    <!-- <a href="#" class="aside__button _icon-exit"> Выйти </a> -->
+  </div>
+</aside>
+
+      <main class="page">
+        <div class="page__container _container">
+          <div class="separator separator-right">
+            <section class="page__ingredients ingredients py-2">
+              <div class="ingredients__body">
+                <h1
+                  class="ingredients__title title pb-2 _anim-items _anim-no-hide"
+                >
+                  Ингредиенты
+                </h1>
+                <div class="ingredients__frame">
+                  <div class="ingredients__columns">
+{% for i in products %}
+<div id="{{i.id}}" class="ingredients__column _anim-items _anim-no-hide column">
+  <div class="ingredients__item item-ingredients">
+    <div class="item-ingredients__body">
+      <div class="item-ingredients__image">
+        <picture><source srcset="{{i.product.img.url}}" type="image/webp"><img src="{{i.product.img.url}}" alt="image" /></picture>
+      </div>
+      <div class="item-ingredients__title mini-title">{{i.product.name_product}}</div>
+    </div>
+  </div>
+  <div class="item-ingredients__info info-product">
+    <div class="info-product__body">
+      <ul class="info-product__list">
+        <li class="info-product__item">
+          <div class="info-product__title">Название:</div>
+          <div class="info-product__value">{{i.product.name_product}}</div>
+        </li>
+        <li class="info-product__item">
+          <div class="info-product__title">Кол-во:</div>
+          <div class="info-product__value">{{i.weight}} {{i.product.weight}}</div>
+        </li>
+        <li class="info-product__item">
+          <div class="info-product__title">Срок годности:</div>
+          <div class="info-product__value">{{i.product.expiration_date_days}} дней</div>
+        </li>
+      </ul>
+      <a
+        href="{% url "main:update" i.id %}"
+        class="info-product__button info-product__button_change _icon-edit"
+      >
+        Изменить кол-во
+      </a>
+      <a
+        href="{% url "main:delete" i.id %}"
+        class="info-product__button info-product__button_delete _icon-trash-o"
+        >Удалить
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endfor %}
+
+                  </div>
+                </div>
+                <div class="ingredients__footer">
+                  <div class="ingredients__buttons">
+                    <a
+                      href="{% url "main:add_product" %}"
+                      class="ingredients__button btn btn-dark"
+                    >
+                      Добавить продукт
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside class="ingredients__rside rside">
+              <div class="rside__body"></div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- Ссылка для открытия попапа -->
+<a href="#" class="open-popup"></a>
+<!-- Попап -->
+<div class="popup" id="">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <a href="#" class="popup__close close-popup"></a>
+    </div>
+  </div>
+</div>
+<div class="popup" id="addProduct">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Добавить продукт</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form
+        action="#"
+        method="get"
+        class="popup__form form-popup popup__form_1"
+      >
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Название продукта:<span>*</span>
+            </label>
+            <input
+              name="product_name"
+              type="text"
+              class="form-popup__input input product-name"
+            />
+          </div>
+        </div>
+        <div class="form-popup__footer">
+          <div class="form-popup__tags">
+            <div
+              class="form-popup__tag tag form-popup__tag_1 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Яйцо
+            </div>
+            <div
+              class="form-popup__tag tag form-popup__tag_2 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Молоко
+            </div>
+            <div
+              class="form-popup__tag tag form-popup__tag_3 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Яйца нос
+            </div>
+          </div>
+        </div>
+        <a
+          href="#createNewProduct"
+          class="form-popup__new _hidden open-popup btn btn-outline-green btn-outline open-popup"
+          >Создать свой продукт</a
+        >
+      </form>
+
+      <form
+        style="display: none"
+        action="#"
+        method="post"
+        class="popup__form form-popup popup__form_2"
+      >
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта(шт):<span>*</span>
+            </label>
+            <input
+              name="product_quantity"
+              type="text"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+        <button class="form-popup__button btn btn-dark" type="submit">
+          Сохранить количество продукта
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="popup" id="createNewProduct">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Создать продукт</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form action="#" method="get" class="popup__form form-popup">
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Название продукта:<span>*</span>
+            </label>
+            <input
+              name="new_product_name"
+              type="text"
+              class="form-popup__input input"
+            />
+          </div>
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта(шт):<span>*</span>
+            </label>
+            <input
+              name="new_product_quantity"
+              type="number"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="form-popup__button open-popup btn btn-outline-green btn-outline"
+        >
+          Создать продукт
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="changeProductQuantity">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Изменить кол-во продукта</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form action="#" method="get" class="popup__form form-popup">
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта:<span>*</span>
+            </label>
+            <input
+              name="product_quantity"
+              type="number"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+        <button class="form-popup__button btn btn-dark" type="submit">
+          Изменить количество
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+ <script src="https://cdn.tailwindcss.com%22%3E/?_v=20231022062914"></script>
+<script src="{% static 'mainapp/js/app.min.js' %}"></script>
+
+  </body>
+</html>

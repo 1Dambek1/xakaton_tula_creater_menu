@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- Заголовок страницы в браузере -->
+  <title>Регистрация</title>
+  <!--- SWIPER --->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css?_v=20230922183920"
+  />
+  <!-- TAILWINDCSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css?_v=20231022062914"
+    rel="stylesheet"
+  />
+  <!-- BOOTSTRAP -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css?_v=20230922183920" rel="stylesheet" -->
+  <!-- integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
+  <!-- Подключаем CSS -->
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.min.css' %}" />
+
+  <link rel="stylesheet" href="css/style.min.css?_v=20230922183920" />
+  <!-- Кодировка страницы -->
+  <!-- С появлением HTML5 можно использовать  -->
+  <meta charset="UTF-8" />
+  <!-- Настройки адаптивности страницы  -->
+  <!-- Адаптивность  -->
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=0"
+  />
+  <!---maximum-scale=1.0, user-scalable=0--->
+  <!-- Отключает формирование ссылки у номера телефона на iOS -->
+  <!---<meta name="format-detection" content="telephone=no">--->
+  <link rel="shortcut icon" href="" />
+  <!-- Краткое описание страницы  -->
+  <meta name="description" content="" />
+  <!-- Ключевые слова страницы  -->
+  <meta name="keywords" content="" />
+
+  <!-- Управление доступом поисковых роботов к странице -->
+  <!-- Запрет индексации страницы полностью -->
+  <!---<meta name="robots" content="none">--->
+
+  <!-- Автор страницы -->
+  <meta name="Author" content="" />
+  <!-- Авторские права -->
+  <meta name="Copyright" content="2023" />
+  <!-- Адрес автора -->
+  <meta name="Address" content="" />
+
+  <!-- локализация сайта, для русскоязычного сайта ru_RU -->
+  <meta property="og:locale" content="ru_RU" />
+  <!-- тип контента, по умолчанию используется article -->
+  <meta property="og:type" content="article" />
+  <!-- заголовок страницы, который будет выводится в записи социальной сети -->
+  <meta property="og:title" content="" />
+  <!-- описание страницы -->
+  <meta property="og:description" content="" />
+  <!-- ссылка на изображение, которое будет публиковаться в записи -->
+  <meta property="og:image" content="" />
+  <!-- ссылка на текущую страницу -->
+  <meta property="og:url" content="" />
+  <!-- название сайта -->
+  <meta property="og:site_name" content="" />
+
+  <!-- Тип карты, по умолчанию используется summary -->
+  <meta name="twitter:card" content="summary" />
+  <!-- Имя/логин автора -->
+  <meta name="twitter:site" content="" />
+  <!-- Название страницы -->
+  <meta name="twitter:title" content="" />
+  <!-- Описание страницы -->
+  <meta name="twitter:description" content="" />
+  <!-- Cсылка на изображение -->
+  <meta name="twitter:image" content="" />
+</head>
+
+
+  <body>
+    <main class="register">
+      <div class="register__container">
+        <div class="register__body">
+          <form
+            action="#"
+            method='post'
+            class="register__form register__register register reg-form-slide"
+          >
+          {% csrf_token %}
+            <h3 class="form__title login__title title">Регистрация</h3>
+            <div class="form__line"></div>
+            <div class="form__close form__close-reg"></div>
+            <div class="form__login-wrapper _toggled-input">
+              <label class="required form__login register__login label">
+                Логин:<span>*</span>
+              </label>
+              {{form.username}}
+            </div>
+            <div class="form__email-wrapper _toggled-input">
+              <label class="required form__email register__email label">
+                password1:<span>*</span>
+              </label>
+              {{form.password1}}
+            </div>
+            <div
+              class="form__password-wrapper reg-password-wrapper _toggled-input"
+              data-hide-password
+            >
+              <label class="required form__password register__pasword label">
+                Пароль:<span>*</span>
+              </label>
+              {{form.password2}}
+              <div class="form__password-checkbox-wrapper">
+                <div
+                  class="form__checkbox-avatar _icon-eye"
+                  data-hide-password-button
+                ></div>
+              </div>
+            </div>
+            <button class="form__button btn btn-dark">
+              Зарегистрироваться
+            </button>
+            <div class="form__register">
+              <p>Уже есть аккаунт?</p>
+              <a class="register-slide" href="{% url "login" %}">Войти</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <!-- Ссылка для открытия попапа -->
+<a href="#" class="open-popup"></a>
+<!-- Попап -->
+<div class="popup" id="">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <a href="#" class="popup__close close-popup"></a>
+    </div>
+  </div>
+</div>
+<div class="popup" id="addProduct">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Добавить продукт</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form
+        action="#"
+        method="get"
+        class="popup__form form-popup popup__form_1"
+      >
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Название продукта:<span>*</span>
+            </label>
+            <input
+              name="product_name"
+              type="text"
+              class="form-popup__input input product-name"
+            />
+          </div>
+        </div>
+        <div class="form-popup__footer">
+          <div class="form-popup__tags">
+            <div
+              class="form-popup__tag tag form-popup__tag_1 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Яйцо
+            </div>
+            <div
+              class="form-popup__tag tag form-popup__tag_2 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Молоко
+            </div>
+            <div
+              class="form-popup__tag tag form-popup__tag_3 _hidden"
+              data-add-to-url="onClick,current,product_name"
+            >
+              Яйца нос
+            </div>
+          </div>
+        </div>
+        <a
+          href="#createNewProduct"
+          class="form-popup__new _hidden open-popup btn btn-outline-green btn-outline open-popup"
+          >Создать свой продукт</a
+        >
+      </form>
+
+      <form
+        style="display: none"
+        action="#"
+        method="post"
+        class="popup__form form-popup popup__form_2"
+      >
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта(шт):<span>*</span>
+            </label>
+            <input
+              name="product_quantity"
+              type="text"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+        <button class="form-popup__button btn btn-dark" type="submit">
+          Сохранить количество продукта
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="popup" id="createNewProduct">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Создать продукт</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form action="#" method="get" class="popup__form form-popup">
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Название продукта:<span>*</span>
+            </label>
+            <input
+              name="new_product_name"
+              type="text"
+              class="form-popup__input input"
+            />
+          </div>
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта(шт):<span>*</span>
+            </label>
+            <input
+              name="new_product_quantity"
+              type="number"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="form-popup__button open-popup btn btn-outline-green btn-outline"
+        >
+          Создать продукт
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="changeProductQuantity">
+  <div class="popup__wrapper">
+    <div class="popup__body">
+      <div class="popup__header decor">
+        <h2 class="popup__title title">Изменить кол-во продукта</h2>
+        <a href="#" class="popup__close close-popup _icon-close"></a>
+      </div>
+
+      <form action="#" method="get" class="popup__form form-popup">
+        <div class="form-popup__body">
+          <div class="form-popup__item _toggled-input">
+            <label class="label required">
+              Количество продукта:<span>*</span>
+            </label>
+            <input
+              name="product_quantity"
+              type="number"
+              class="form-popup__input input"
+            />
+          </div>
+        </div>
+        <button class="form-popup__button btn btn-dark" type="submit">
+          Изменить количество
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+ <script src="https://cdn.tailwindcss.com%22%3E/?_v=20231022062914"></script>
+ <script src="{% static 'mainapp/js/app.min.js' %}"></script>
+
+  </body>
+</html>
